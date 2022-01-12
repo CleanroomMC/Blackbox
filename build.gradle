@@ -12,8 +12,8 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 
 version = "1.0"
-group = "io.github.cleanroommc.modid" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "modid"
+group = "io.github.cleanroommc" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "blackbox"
 
 sourceCompatibility = targetCompatibility = '1.8'
 compileJava {
@@ -34,9 +34,6 @@ minecraft {
 }
 
 dependencies {
-
-	// Remove below comments if you want to an API to download external assets from
-	// deobfCompile ("com.github.CleanroomMC:AssetMover:0.2")
 
 }
 

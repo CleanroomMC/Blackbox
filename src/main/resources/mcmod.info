@@ -1,14 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
+  "modid": "blackbox",
+  "name": "Blackbox Rendering API",
+  "description": "A complex system or device whose internal workings are hidden or not readily understood.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
   "authorList": ["CleanroomMC"],
-  "credits": "Authors of this project",
+  "credits": "KilaBash, Rongmario",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
