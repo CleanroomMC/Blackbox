@@ -1,17 +1,19 @@
 package io.github.cleanroommc.blackbox.resourcepack;
 
 import com.google.gson.JsonObject;
+import io.github.cleanroommc.blackbox.Blackbox;
+import it.unimi.dsi.fastutil.objects.Reference2ObjectOpenHashMap;
 import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.client.resources.data.IMetadataSection;
+import net.minecraft.client.resources.data.IMetadataSectionSerializer;
 import net.minecraft.client.resources.data.MetadataSerializer;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
-public final class ResourcePackInjection {
+public final class ResourcePackHelpers {
 
 	private static final LinkedList<IResourcePack> packsToInject = new LinkedList<>();
+	private static final Map<Class, IMetadataSectionSerializer> metadataSerializersToInject = new Reference2ObjectOpenHashMap<>();
 
 	/**
 	 * Silently inject a custom IResourcePack implementation into the default resource pack space.
@@ -19,12 +21,25 @@ public final class ResourcePackInjection {
 	 * @param pack        Custom IResourcePack implementation to be injected
 	 * @param prioritised If this IResourcePack should be prioritised above other resource packs
 	 */
-	public static void inject(IResourcePack pack, boolean prioritised) {
+	public static void injectPack(IResourcePack pack, boolean prioritised) {
 		if (prioritised) {
 			packsToInject.addFirst(pack);
 		} else {
 			packsToInject.addLast(pack);
 		}
+	}
+
+	/**
+	 * Inject a custom IMetadataSection serializer into Minecraft's main MetadataSerializer
+	 *
+	 * @param sectionClass IMetadataSection class for type identification
+	 * @param serializer   Serializer implementation for the specified IMetadataSection
+	 */
+	public static <T extends IMetadataSection> void injectMetadataSerializer(Class<T> sectionClass, IMetadataSectionSerializer<T> serializer) {
+		if (metadataSerializersToInject.containsKey(sectionClass)) {
+			Blackbox.LOGGER.error("{}'s serializer is going to be overriden.", sectionClass);
+		}
+		metadataSerializersToInject.put(sectionClass, serializer);
 	}
 
 	/**
@@ -48,6 +63,10 @@ public final class ResourcePackInjection {
 		return Collections.unmodifiableList(packsToInject);
 	}
 
-	private ResourcePackInjection() { }
+	public static Map<Class<IMetadataSection>, IMetadataSectionSerializer<IMetadataSection>> getInjectedMetadataSerializers() {
+		return Collections.unmodifiableMap(metadataSerializersToInject);
+	}
+
+	private ResourcePackHelpers() { }
 
 }
