@@ -75,6 +75,14 @@ public class WorldSceneRenderer {
 		resetCamera();
 	}
 
+	protected Rectangle getPositionedRectangle(float x, float y, float width, float height) {
+		return getPositionedRectangle((int) x, (int) y, (int) width, (int) height);
+	}
+
+	protected Rectangle getPositionedRectangle(int x, int y, int width, int height) {
+		return new Rectangle(x, y, width, height);
+	}
+
 	private void setupCamera(Rectangle rect) {
 		setupCamera(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
 	}
