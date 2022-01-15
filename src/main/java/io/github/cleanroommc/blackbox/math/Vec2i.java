@@ -1,4 +1,4 @@
-package io.github.cleanroommc.blackbox.utils;
+package io.github.cleanroommc.blackbox.math;
 
 import com.google.common.base.MoreObjects;
 
