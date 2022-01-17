@@ -29,7 +29,7 @@ public class BlackboxShaderManager {
 			Class<?> shadersClass = Class.forName("net.optifine.shaders.Shaders");
 			shaderPackLoadedField = shadersClass.getDeclaredField("shaderPackLoaded");
 		} catch (Exception ignored) {
-			Blackbox.LOGGER.warn("Cannot detect Optifine, possibly version mismatch or just simply not installed. Optifine compatibility not supported.");
+			Blackbox.LOGGER.debug("Cannot detect Optifine, not going to do any specific compatibility patches.");
 		}
 		if (shaderPackLoadedField == null) {
 			optifine$shaderPackLoaded = () -> false;
