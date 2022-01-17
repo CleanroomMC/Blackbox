@@ -13,7 +13,7 @@ import java.util.*;
 public final class ResourcePackHelpers {
 
 	private static final LinkedList<IResourcePack> packsToInject = new LinkedList<>();
-	private static final Map<Class, IMetadataSectionSerializer> metadataSerializersToInject = new Reference2ObjectOpenHashMap<>();
+	private static final Map<Class<IMetadataSection>, IMetadataSectionSerializer<IMetadataSection>> metadataSerializersToInject = new Reference2ObjectOpenHashMap<>();
 
 	/**
 	 * Silently inject a custom IResourcePack implementation into the default resource pack space.
@@ -39,7 +39,7 @@ public final class ResourcePackHelpers {
 		if (metadataSerializersToInject.containsKey(sectionClass)) {
 			Blackbox.LOGGER.error("{}'s serializer is going to be overriden.", sectionClass);
 		}
-		metadataSerializersToInject.put(sectionClass, serializer);
+		metadataSerializersToInject.put((Class<IMetadataSection>) sectionClass, (IMetadataSectionSerializer<IMetadataSection>) serializer);
 	}
 
 	/**
