@@ -18,11 +18,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.MinecraftForgeClient;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.util.Rectangle;
 import org.lwjgl.util.glu.GLU;
 
 import javax.annotation.Nullable;
 import javax.vecmath.Vector3f;
+import java.awt.*;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
@@ -84,7 +84,7 @@ public class WorldSceneRenderer {
 	}
 
 	private void setupCamera(Rectangle rect) {
-		setupCamera(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
+		setupCamera(rect.x, rect.y, rect.width, rect.height);
 	}
 
 	protected void setupCamera(int x, int y, int width, int height) {

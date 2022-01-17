@@ -4,7 +4,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.util.Rectangle;
+
+import java.awt.*;
 
 public class ImmediateWorldSceneRenderer extends WorldSceneRenderer {
 
