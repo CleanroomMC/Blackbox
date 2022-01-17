@@ -15,7 +15,7 @@ import net.minecraftforge.common.model.IModelState;
 import java.util.Map;
 import java.util.function.UnaryOperator;
 
-public class ModelBakery {
+public class BlackboxModelBakery {
 
 	private static final FaceBakery FACE_BAKERY = new FaceBakery();
 
@@ -26,37 +26,37 @@ public class ModelBakery {
 	private VertexFormat format;
 	private UnaryOperator<IModel> mutation;
 
-	public ModelBakery(ModelTemplate template) {
+	public BlackboxModelBakery(ModelTemplate template) {
 		this.template = template;
 		this.sprites = new Object2ObjectOpenHashMap<>();
 		this.state = template.getModel().getDefaultState();
 		this.format = DefaultVertexFormats.BLOCK;
 	}
 
-	public ModelBakery addSprite(String element, ResourceLocation textureLocation) {
+	public BlackboxModelBakery addSprite(String element, ResourceLocation textureLocation) {
 		return addSprite(element, textureLocation.toString());
 	}
 
-	public ModelBakery addSprite(String element, String textureLocation) {
+	public BlackboxModelBakery addSprite(String element, String textureLocation) {
 		this.sprites.put(element, textureLocation);
 		return this;
 	}
 
-	public ModelBakery addParticleSprite(ResourceLocation textureLocation) {
+	public BlackboxModelBakery addParticleSprite(ResourceLocation textureLocation) {
 		return addParticleSprite(textureLocation.toString());
 	}
 
-	public ModelBakery addParticleSprite(String textureLocation) {
+	public BlackboxModelBakery addParticleSprite(String textureLocation) {
 		this.sprites.put("particle", textureLocation);
 		return this;
 	}
 
-	public ModelBakery changeFormat(VertexFormat format) {
+	public BlackboxModelBakery changeFormat(VertexFormat format) {
 		this.format = format;
 		return this;
 	}
 
-	public ModelBakery mutateModel(UnaryOperator<IModel> mutate) {
+	public BlackboxModelBakery mutateModel(UnaryOperator<IModel> mutate) {
 		this.mutation = mutate;
 		return this;
 	}
