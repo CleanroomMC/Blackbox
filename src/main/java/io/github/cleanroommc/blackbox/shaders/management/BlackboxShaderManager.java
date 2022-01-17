@@ -60,6 +60,7 @@ public class BlackboxShaderManager {
 		this.programs = new Reference2ReferenceOpenHashMap<>();
 	}
 
+	// TODO: fix 1282
 	public Framebuffer renderFullImageInFramebuffer(Framebuffer fbo, ShaderLoader frag, Consumer<UniformCache> consumeCache) {
 		if (fbo == null || frag == null || !isShadersCompatible()) {
 			return fbo;
