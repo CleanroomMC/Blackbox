@@ -23,7 +23,7 @@ public class EntityRendererMixin {
 
 	@Inject(method = "renderWorld", at = @At("HEAD"))
 	private void beforeRenderingPasses(float partialTicks, long finishTimeNano, CallbackInfo ci) {
-		DepthHelpers.onPreWorldRender();
+		DepthHelpers.preWorldRender(this.mc);
 	}
 
 	@Redirect(method = "renderWorldPass", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/RenderGlobal;renderBlockLayer(Lnet/minecraft/util/BlockRenderLayer;DILnet/minecraft/entity/Entity;)I", ordinal = 3))
@@ -32,6 +32,11 @@ public class EntityRendererMixin {
 			return ShaderRenderLayer.Bloom.renderLayer(this.mc, renderGlobal, renderLayer, partialTicks, pass, entity);
 		}
 		return renderGlobal.renderBlockLayer(renderLayer, partialTicks, pass, entity);
+	}
+
+	@Inject(method = "renderWorldPass", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/client/ForgeHooksClient;dispatchRenderLast(Lnet/minecraft/client/renderer/RenderGlobal;F)V", remap = false))
+	private void afterRenderingPass(int pass, float partialTicks, long finishTimeNano, CallbackInfo ci) {
+		DepthHelpers.postWorldRender(this.mc, this.mc.renderGlobal, partialTicks);
 	}
 
 }

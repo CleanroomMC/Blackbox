@@ -99,6 +99,8 @@ public class ShaderRenderLayer {
 					return result;
 			}
 			 */
+			// BloomEffect.getInstance().renderLOG(FBO, mcFBO);
+			// BloomEffect.getInstance().renderUnity(FBO, mcFBO);
 			BloomEffect.getInstance().renderUnreal(FBO, mcFBO);
 			GlStateManager.depthMask(false);
 			// Render Bloom Blend result to mcFBO

@@ -3,6 +3,7 @@ package io.github.cleanroommc.blackbox.test;
 import io.github.cleanroommc.blackbox.Blackbox;
 import io.github.cleanroommc.blackbox.model.ModelTemplate;
 import io.github.cleanroommc.blackbox.model.bakery.BlackboxModelBakery;
+import io.github.cleanroommc.blackbox.shaders.ShaderRenderLayer;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -82,6 +83,11 @@ public class Tests {
 			return BlockRenderLayer.CUTOUT_MIPPED;
 		}
 
+		@Override
+		public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
+			return layer == BlockRenderLayer.CUTOUT_MIPPED || layer == ShaderRenderLayer.Bloom.LAYER;
+		}
+
 	}
 
 	public static class DiamondOre implements IBakedModel {
@@ -113,6 +119,7 @@ public class Tests {
 					};
 					trans.setParent(builder);
 					quad.pipe(trans);
+					builder.setQuadTint(1);
 					builder.setQuadOrientation(quad.getFace());
 					builder.setTexture(quad.getSprite());
 					builder.setApplyDiffuseLighting(false);

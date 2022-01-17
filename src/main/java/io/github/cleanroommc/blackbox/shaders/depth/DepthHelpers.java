@@ -5,8 +5,11 @@ import io.github.cleanroommc.blackbox.shaders.management.BlackboxShaderManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.client.shader.Framebuffer;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.BlockRenderLayer;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL14;
 import org.lwjgl.opengl.GL30;
@@ -25,8 +28,7 @@ public class DepthHelpers {
 		return lastBind && BlackboxShaderManager.isShadersCompatible() && OpenGlHelper.isFramebufferEnabled();
 	}
 
-	public static void onPreWorldRender() {
-		Minecraft mc = Minecraft.getMinecraft();
+	public static void preWorldRender(Minecraft minecraft) {
 		if (shouldRenderDepthTexture()) {
 			// Kila: If we can't use the vanilla fbo.... okay, why not create our own fbo?
 			if (useDefaultFBO && GL11.glGetError() != 0) {
@@ -38,7 +40,7 @@ public class DepthHelpers {
 			}
 			if (framebufferDepthTexture == 0) {
 				createDepthTexture();
-			} else if (lastWidth != mc.getFramebuffer().framebufferWidth || lastHeight != mc.getFramebuffer().framebufferHeight) {
+			} else if (lastWidth != minecraft.getFramebuffer().framebufferWidth || lastHeight != minecraft.getFramebuffer().framebufferHeight) {
 				disposeDepthTexture();
 				createDepthTexture();
 			}
@@ -46,6 +48,20 @@ public class DepthHelpers {
 			disposeDepthTexture();
 		}
 		lastBind = false;
+	}
+
+	public static void postWorldRender(Minecraft minecraft, RenderGlobal renderGlobal, float partialTicks) {
+		Entity viewer = minecraft.getRenderViewEntity();
+		if (!useDefaultFBO && framebufferDepthTexture != 0) {
+			int lastFBO = GlStateManager.glGetInteger(GL30.GL_FRAMEBUFFER_BINDING);
+			OpenGlHelper.glBindFramebuffer(OpenGlHelper.GL_FRAMEBUFFER, framebufferObject);
+			GlStateManager.clear(GL11.GL_DEPTH_BUFFER_BIT);
+			GlStateManager.disableTexture2D();
+			renderGlobal.renderBlockLayer(BlockRenderLayer.SOLID, partialTicks, 0, viewer);
+			renderGlobal.renderBlockLayer(BlockRenderLayer.CUTOUT_MIPPED, partialTicks, 0, viewer);
+			GlStateManager.enableTexture2D();
+			OpenGlHelper.glBindFramebuffer(OpenGlHelper.GL_FRAMEBUFFER, lastFBO);
+		}
 	}
 
 	public static void createDepthTexture() {
@@ -57,7 +73,7 @@ public class DepthHelpers {
 		} else {
 			framebufferObject = OpenGlHelper.glGenFramebuffers();
 		}
-		framebufferDepthTexture = TextureUtil.glGenTextures(); // Gen texture
+		framebufferDepthTexture = TextureUtil.glGenTextures(); // Gen Texture
 		GlStateManager.bindTexture(framebufferDepthTexture);
 		GlStateManager.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, GL11.GL_REPEAT);
 		GlStateManager.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, GL11.GL_REPEAT);
@@ -74,7 +90,7 @@ public class DepthHelpers {
 		GlStateManager.bindTexture(0);
 		lastWidth = framebuffer.framebufferTextureWidth;
 		lastHeight = framebuffer.framebufferTextureHeight;
-		OpenGlHelper.glBindFramebuffer(OpenGlHelper.GL_FRAMEBUFFER, framebufferObject); // bind buffer then bind depth texture
+		OpenGlHelper.glBindFramebuffer(OpenGlHelper.GL_FRAMEBUFFER, framebufferObject); // Bind Buffer then Bind Depth Texture
 		OpenGlHelper.glFramebufferTexture2D(OpenGlHelper.GL_FRAMEBUFFER,
 				stencil ? GL30.GL_DEPTH_STENCIL_ATTACHMENT : OpenGlHelper.GL_DEPTH_ATTACHMENT,
 				GL11.GL_TEXTURE_2D,
