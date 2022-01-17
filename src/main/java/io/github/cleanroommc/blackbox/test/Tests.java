@@ -2,7 +2,7 @@ package io.github.cleanroommc.blackbox.test;
 
 import io.github.cleanroommc.blackbox.Blackbox;
 import io.github.cleanroommc.blackbox.model.ModelTemplate;
-import io.github.cleanroommc.blackbox.model.bakery.ModelBakery;
+import io.github.cleanroommc.blackbox.model.bakery.BlackboxModelBakery;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -54,7 +54,7 @@ public class Tests {
 	}
 
 	public static void onPostInit() {
-		IBakedModel first = new ModelBakery(ModelTemplate.LAYERED_BLOCK_TINTED)
+		IBakedModel first = new BlackboxModelBakery(ModelTemplate.LAYERED_BLOCK_TINTED)
 				.addSprite("underlay", "blocks/stone")
 				.addSprite("overlay", "blackbox:blocks/diamond_ore_overlay")
 				.addParticleSprite("blocks/stone")
@@ -97,7 +97,6 @@ public class Tests {
 			List<BakedQuad> quads = new ArrayList<>();
 			for (BakedQuad quad : model.getQuads(state, side, rand)) {
 				if (quad.getTintIndex() == 1) {
-					Blackbox.LOGGER.fatal("Old: {}", quad.getVertexData());
 					VertexFormat newVertexFormat = new VertexFormat(quad.getFormat()).addElement(DefaultVertexFormats.TEX_2S);
 					UnpackedBakedQuad.Builder builder = new UnpackedBakedQuad.Builder(newVertexFormat);
 					VertexLighterFlat trans = new VertexLighterFlat(Minecraft.getMinecraft().getBlockColors()) {
@@ -118,7 +117,6 @@ public class Tests {
 					builder.setTexture(quad.getSprite());
 					builder.setApplyDiffuseLighting(false);
 					BakedQuad newQuad = builder.build();
-					Blackbox.LOGGER.fatal("New: {}", newQuad.getVertexData());
 					quads.add(newQuad);
 				} else {
 					quads.add(quad);

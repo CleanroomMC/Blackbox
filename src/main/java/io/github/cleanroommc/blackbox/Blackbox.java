@@ -1,6 +1,7 @@
 package io.github.cleanroommc.blackbox;
 
 import io.github.cleanroommc.blackbox.shaders.ShaderLoaders;
+import io.github.cleanroommc.blackbox.shaders.ShaderRenderLayer;
 import io.github.cleanroommc.blackbox.shaders.ShaderTypes;
 import io.github.cleanroommc.blackbox.test.Tests;
 import net.minecraftforge.common.MinecraftForge;
@@ -25,6 +26,7 @@ public class Blackbox {
 	public void construct(FMLConstructionEvent event) {
 		if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
 			ShaderTypes.init();
+			ShaderRenderLayer.init();
 		}
 		MinecraftForge.EVENT_BUS.register(Tests.class);
 	}

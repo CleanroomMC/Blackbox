@@ -21,18 +21,6 @@ public class ShaderTypes {
 	public static void init() {
 		Blackbox.LOGGER.info("Intializing custom ShaderTypes.");
 		Blackbox.LOGGER.info("Initialized ShaderTypes: {}", Arrays.stream(ShaderLoader.ShaderType.values()).map(e -> e.name()).collect(Collectors.joining(", ")));
-		/*
-		try {
-			// Add ShaderType.class as a clientType
-			Field clientTypesField = EnumHelperClient.class.getDeclaredField("clientTypes");
-			clientTypesField.setAccessible(true);
-			Class<?>[][] clientTypes = (Class<?>[][]) clientTypesField.get(null);
-			Class<?>[] shaderTypeArgs = { ShaderLoader.ShaderType.class, String.class, String.class, int.class };
-			clientTypesField.set(null, ArrayUtils.add(clientTypes, shaderTypeArgs));
-		} catch (ReflectiveOperationException e) {
-			Blackbox.LOGGER.fatal("Not able to reflectively add new ShaderTypes to Minecraft!", e);
-		}
-		 */
 	}
 
 	public static ShaderLoader.ShaderType add(String name, String shaderExtension, int shaderMode) {

@@ -15,6 +15,7 @@ public class BlackboxCore implements IFMLLoadingPlugin {
 	public BlackboxCore() {
 		MixinBootstrap.init();
 		Mixins.addConfiguration("mixins.blackbox_resource_injection.json");
+		Mixins.addConfiguration("mixins.blackbox_shaders.json");
 	}
 
 	@Override
