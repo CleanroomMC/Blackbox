@@ -41,7 +41,7 @@ public class ShaderRenderLayer {
 			} else {
 				FBO.createBindFramebuffer(mcFBO.framebufferWidth, mcFBO.framebufferHeight);
 			}
-			if (FBO.framebufferWidth != mcFBO.framebufferWidth || FBO.framebufferHeight != mcFBO.framebufferHeight || (mcFBO.isStencilEnabled() && !FBO.isStencilEnabled())) {
+			if (FBO.framebufferWidth != mcFBO.framebufferWidth || FBO.framebufferHeight != mcFBO.framebufferHeight) {
 				if (mcFBO.isStencilEnabled() && !FBO.isStencilEnabled()) {
 					FBO.enableStencil();
 				}
@@ -52,16 +52,16 @@ public class ShaderRenderLayer {
 				}
 				FBO.setFramebufferFilter(GL_LINEAR);
 			}
+
 			GlStateManager.depthMask(true);
+			// Commenting this out restores textures - fast render hook was originally going to be here
+			/*
 			mcFBO.bindFramebuffer(true);
-			// Render to Bloom Buffer
 			FBO.framebufferClear();
 			FBO.bindFramebuffer(false);
+			 */
+			// Render to Bloom Buffer
 			renderGlobal.renderBlockLayer(LAYER, partialTicks, pass, entity);
-			GlStateManager.depthMask(false);
-			// Fast Render Bloom Layer to mcFBO
-			FBO.bindFramebufferTexture();
-			BlackboxShaderManager.getInstance().renderFullImageInFramebuffer(mcFBO, ShaderLoaders.IMAGE_F, null);
 			GlStateManager.depthMask(false);
 			// Fast Render Bloom Layer to mcFBO
 			FBO.bindFramebufferTexture();
