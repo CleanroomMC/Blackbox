@@ -34,6 +34,7 @@ public class ShaderProgram {
 	}
 
 	public void use(IUniformCallback callback) {
+		this.uniformCache.invalidate();
 		GL20.glLinkProgram(programId);
 		GL20.glUseProgram(programId);
 		callback.apply(uniformCache);

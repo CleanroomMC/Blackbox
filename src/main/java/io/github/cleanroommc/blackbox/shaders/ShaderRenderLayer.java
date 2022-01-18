@@ -35,13 +35,13 @@ public class ShaderRenderLayer {
 
 		public static int renderLayer(Minecraft minecraft, RenderGlobal renderGlobal, BlockRenderLayer translucentLayer, double partialTicks, int pass, Entity entity) {
 			Framebuffer mcFBO = minecraft.getFramebuffer();
-			if (FBO == null) {
-				FBO = new Framebuffer(mcFBO.framebufferWidth, mcFBO.framebufferHeight, false);
-				FBO.setFramebufferColor(0, 0, 0, 0);
-			} else {
-				FBO.createBindFramebuffer(mcFBO.framebufferWidth, mcFBO.framebufferHeight);
-			}
-			if (FBO.framebufferWidth != mcFBO.framebufferWidth || FBO.framebufferHeight != mcFBO.framebufferHeight) {
+			if (FBO == null || FBO.framebufferWidth != mcFBO.framebufferWidth || FBO.framebufferHeight != mcFBO.framebufferHeight || (mcFBO.isStencilEnabled() && !FBO.isStencilEnabled())) {
+				if (FBO == null) {
+					FBO = new Framebuffer(mcFBO.framebufferWidth, mcFBO.framebufferHeight, false);
+					FBO.setFramebufferColor(0, 0, 0, 0);
+				} else {
+					FBO.createBindFramebuffer(mcFBO.framebufferWidth, mcFBO.framebufferHeight);
+				}
 				if (mcFBO.isStencilEnabled() && !FBO.isStencilEnabled()) {
 					FBO.enableStencil();
 				}
@@ -52,14 +52,10 @@ public class ShaderRenderLayer {
 				}
 				FBO.setFramebufferFilter(GL_LINEAR);
 			}
-
 			GlStateManager.depthMask(true);
-			// Commenting this out restores textures - fast render hook was originally going to be here
-			/*
-			mcFBO.bindFramebuffer(true);
+			// mcFBO.bindFramebuffer(true);
 			FBO.framebufferClear();
 			FBO.bindFramebuffer(false);
-			 */
 			// Render to Bloom Buffer
 			renderGlobal.renderBlockLayer(LAYER, partialTicks, pass, entity);
 			GlStateManager.depthMask(false);

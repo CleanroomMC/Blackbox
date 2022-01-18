@@ -22,6 +22,11 @@ public class UniformCache {
 		this.programId = programId;
 	}
 
+	public void invalidate() {
+		entryCache.clear();
+		locationCache.clear();
+	}
+
 	public void glUniform1F(String location, float v0) {
 		glUniformF(location, (loc) -> GL20.glUniform1f(loc, v0), v0);
 	}
