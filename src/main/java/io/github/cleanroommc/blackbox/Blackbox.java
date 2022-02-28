@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLConstructionEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.relauncher.FMLLaunchHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,7 +29,9 @@ public class Blackbox {
 			ShaderTypes.init();
 			ShaderRenderLayer.init();
 		}
-		MinecraftForge.EVENT_BUS.register(Tests.class);
+		if (FMLLaunchHandler.isDeobfuscatedEnvironment()) {
+			MinecraftForge.EVENT_BUS.register(Tests.class);
+		}
 	}
 
 	@Mod.EventHandler
@@ -36,7 +39,9 @@ public class Blackbox {
 		if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
 			ShaderLoaders.init();
 		}
-		Tests.onPostInit();
+		if (FMLLaunchHandler.isDeobfuscatedEnvironment()) {
+			Tests.onPostInit();
+		}
 	}
 
 }
