@@ -1,13 +1,13 @@
 {
-	"package": "io.github.cleanroommc.blackbox.shaders.core.mixins",
+	"package": "com.cleanroommc.blackbox.shaders.core.mixins",
 	"refmap": "mixins.blackbox.refmap.json",
 	"target": "@env(DEFAULT)",
 	"minVersion": "0.8",
 	"compatibilityLevel": "JAVA_8",
 	"client": [
-		"EntityRendererMixin",
-		"RegionRenderCacheBuilderMixin",
-		"ShaderLoaderExposer",
-		"ShaderTypeExposer"
+      "EntityRendererMixin",
+      "RegionRenderCacheBuilderMixin",
+      "ShaderLoaderExposer",
+      "ShaderTypeExposer"
 	]
 }
