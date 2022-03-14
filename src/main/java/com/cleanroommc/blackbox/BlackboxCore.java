@@ -1,22 +1,17 @@
 package com.cleanroommc.blackbox;
 
+import com.google.common.collect.Lists;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
-import org.spongepowered.asm.launch.MixinBootstrap;
-import org.spongepowered.asm.mixin.Mixins;
+import zone.rong.mixinbooter.IEarlyMixinLoader;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Map;
 
 @IFMLLoadingPlugin.Name("Blackbox Rendering Core")
 @IFMLLoadingPlugin.MCVersion(ForgeVersion.mcVersion)
-public class BlackboxCore implements IFMLLoadingPlugin {
-
-	public BlackboxCore() {
-		MixinBootstrap.init();
-		Mixins.addConfiguration("mixins.blackbox_resource_injection.json");
-		Mixins.addConfiguration("mixins.blackbox_shaders.json");
-	}
+public class BlackboxCore implements IFMLLoadingPlugin, IEarlyMixinLoader {
 
 	@Override
 	public String[] getASMTransformerClass() {
@@ -42,4 +37,11 @@ public class BlackboxCore implements IFMLLoadingPlugin {
 		return null;
 	}
 
+	@Override
+	public List<String> getMixinConfigs() {
+		return Lists.newArrayList(
+				"mixins.blackbox_resource_injection.json",
+				"mixins.blackbox_shaders.json",
+				"mixins.blackbox_text.json");
+	}
 }
