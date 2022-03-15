@@ -10,7 +10,6 @@ import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.common.model.IModelState;
 
 import java.util.Map;
 import java.util.function.UnaryOperator;
@@ -22,14 +21,12 @@ public class BlackboxModelBakery {
 	private final ModelTemplate template;
 	private final Map<String, String> sprites;
 
-	private IModelState state;
 	private VertexFormat format;
 	private UnaryOperator<IModel> mutation;
 
 	public BlackboxModelBakery(ModelTemplate template) {
 		this.template = template;
 		this.sprites = new Object2ObjectOpenHashMap<>();
-		this.state = template.getModel().getDefaultState();
 		this.format = DefaultVertexFormats.BLOCK;
 	}
 

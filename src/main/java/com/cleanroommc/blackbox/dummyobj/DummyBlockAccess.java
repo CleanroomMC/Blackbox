@@ -16,6 +16,8 @@ import java.util.Map;
 
 public class DummyBlockAccess implements IBlockAccess {
 
+	private static final IBlockState AIR = Blocks.AIR.getDefaultState();
+
 	private final Map<BlockPos, IBlockState> loadedStates;
 	private final Map<BlockPos, TileEntity> loadedTiles;
 
@@ -37,7 +39,7 @@ public class DummyBlockAccess implements IBlockAccess {
 
 	@Override
 	public IBlockState getBlockState(BlockPos pos) {
-		return this.loadedStates.getOrDefault(pos, Blocks.AIR.getDefaultState());
+		return this.loadedStates.getOrDefault(pos, AIR);
 	}
 
 	@Override
@@ -63,7 +65,8 @@ public class DummyBlockAccess implements IBlockAccess {
 
 	@Override
 	public boolean isSideSolid(BlockPos pos, EnumFacing side, boolean _default) {
-		return getBlockState(pos).isSideSolid(this, pos, side);
+		IBlockState state = getBlockState(pos);
+		return state == AIR ? _default : state.isSideSolid(this, pos, side);
 	}
 
 }
