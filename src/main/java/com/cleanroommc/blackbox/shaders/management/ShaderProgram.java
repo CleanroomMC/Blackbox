@@ -14,6 +14,7 @@ public class ShaderProgram {
 	private final int programId;
 	private final Set<ShaderLoader> loaders;
 	private final UniformCache uniformCache;
+	private boolean unLinked;
 
 	public ShaderProgram() {
 		this.programId = GL20.glCreateProgram();
@@ -30,12 +31,15 @@ public class ShaderProgram {
 		}
 		this.loaders.add(loader);
 		GL20.glAttachShader(programId, ((ShaderLoaderExposer) loader).blackbox$getShaderId());
+		unLinked = true;
 		return this;
 	}
 
 	public void use(IUniformCallback callback) {
-		this.uniformCache.invalidate();
-		GL20.glLinkProgram(programId);
+		if (unLinked){
+			this.uniformCache.invalidate();
+			GL20.glLinkProgram(programId);
+		}
 		GL20.glUseProgram(programId);
 		callback.apply(uniformCache);
 	}
