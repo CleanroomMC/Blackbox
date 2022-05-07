@@ -70,6 +70,7 @@ dependencies {
 	if (project.use_mixins) {
 		deobfCompile 'zone.rong:mixinbooter:4.2'
 	}
+	compile files("./etc/spark-forge-deobf.jar")
 
 }
 
