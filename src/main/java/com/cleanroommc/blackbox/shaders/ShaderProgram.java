@@ -1,4 +1,4 @@
-package com.cleanroommc.blackbox.shaders.management;
+package com.cleanroommc.blackbox.shaders;
 
 import com.cleanroommc.blackbox.shaders.core.mixins.ShaderLoaderExposer;
 import com.cleanroommc.blackbox.shaders.uniform.IUniformCallback;
@@ -14,14 +14,15 @@ public class ShaderProgram {
 	private final int programId;
 	private final Set<ShaderLoader> loaders;
 	private final UniformCache uniformCache;
-	private boolean unLinked;
+
+	private boolean unlinked;
 
 	public ShaderProgram() {
 		this.programId = GL20.glCreateProgram();
-		this.loaders = new ReferenceOpenHashSet<>();
 		if (this.programId == 0) {
 			throw new IllegalStateException("Unable to create ShaderProgram.");
 		}
+		this.loaders = new ReferenceOpenHashSet<>();
 		this.uniformCache = new UniformCache(this.programId);
 	}
 
@@ -31,14 +32,15 @@ public class ShaderProgram {
 		}
 		this.loaders.add(loader);
 		GL20.glAttachShader(programId, ((ShaderLoaderExposer) loader).blackbox$getShaderId());
-		unLinked = true;
+		unlinked = true;
 		return this;
 	}
 
 	public void use(IUniformCallback callback) {
-		if (unLinked){
+		if (unlinked) {
 			this.uniformCache.invalidate();
 			GL20.glLinkProgram(programId);
+			unlinked = false;
 		}
 		GL20.glUseProgram(programId);
 		callback.apply(uniformCache);

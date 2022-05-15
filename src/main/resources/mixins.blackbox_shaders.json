@@ -6,8 +6,6 @@
   "compatibilityLevel": "JAVA_8",
   "client": [
     "ContainerLocalRenderInformationAccessor",
-    "EntityRendererMixin",
-    "RegionRenderCacheBuilderMixin",
     "RenderGlobalExposer",
     "ShaderLoaderExposer",
     "ShaderTypeExposer"

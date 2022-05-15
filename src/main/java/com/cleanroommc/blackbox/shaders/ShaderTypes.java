@@ -19,8 +19,8 @@ public class ShaderTypes {
 	public static final ShaderLoader.ShaderType COMPUTE = add("COMPUTE", ".cmp", GL43.GL_COMPUTE_SHADER);
 
 	public static void init() {
-		Blackbox.LOGGER.info("Intializing custom ShaderTypes.");
-		Blackbox.LOGGER.info("Initialized ShaderTypes: {}", Arrays.stream(ShaderLoader.ShaderType.values()).map(e -> e.name()).collect(Collectors.joining(", ")));
+		Blackbox.LOGGER.info("Initializing custom ShaderTypes.");
+		Blackbox.LOGGER.info("Initialized ShaderTypes: {}", Arrays.stream(ShaderLoader.ShaderType.values()).map(Enum::name).collect(Collectors.joining(", ")));
 	}
 
 	public static ShaderLoader.ShaderType add(String name, String shaderExtension, int shaderMode) {
