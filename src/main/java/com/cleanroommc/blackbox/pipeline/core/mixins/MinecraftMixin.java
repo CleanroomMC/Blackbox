@@ -16,7 +16,7 @@ public class MinecraftMixin {
 
     @Inject(method = "runGameLoop", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/GlStateManager;pushMatrix()V", ordinal = 0))
     private void beforeRender(CallbackInfo ci) {
-        while (this.fences.size() > 5) {
+        while (this.fences.size() > 3) {
             GLSync fence = this.fences.dequeue();
             GL32.glClientWaitSync(fence, GL32.GL_SYNC_FLUSH_COMMANDS_BIT, Long.MAX_VALUE);
             GL32.glDeleteSync(fence);

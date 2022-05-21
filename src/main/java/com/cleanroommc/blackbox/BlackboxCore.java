@@ -43,6 +43,8 @@ public class BlackboxCore implements IFMLLoadingPlugin, IEarlyMixinLoader {
 				"mixins.blackbox_pipeline.json",
 				"mixins.blackbox_resource_injection.json",
 				"mixins.blackbox_shaders.json",
-				"mixins.blackbox_text.json");
+				"mixins.blackbox_text.json",
+				"mixins.blackbox_util.json"
+				/*,"mixins.blackbox_threaded.json"*/);
 	}
 }
