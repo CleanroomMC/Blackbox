@@ -1,6 +1,6 @@
 package com.cleanroommc.blackbox.pipeline.core;
 
-import com.cleanroommc.blackbox.pipeline.handlers.DynamicLightingHandler.LitInstance;
+import com.cleanroommc.blackbox.pipeline.lighting.DynamicLightingHandler.LitInstance;
 
 import javax.annotation.Nullable;
 

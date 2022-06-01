@@ -1,8 +1,8 @@
 package com.cleanroommc.blackbox.pipeline.core.mixins;
 
 import com.cleanroommc.blackbox.pipeline.core.ILitEntity;
-import com.cleanroommc.blackbox.pipeline.handlers.DynamicLightingHandler;
-import com.cleanroommc.blackbox.pipeline.handlers.DynamicLightingHandler.LitInstance;
+import com.cleanroommc.blackbox.pipeline.lighting.DynamicLightingHandler;
+import com.cleanroommc.blackbox.pipeline.lighting.DynamicLightingHandler.LitInstance;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;

@@ -1,4 +1,4 @@
-package com.cleanroommc.blackbox.pipeline.handlers;
+package com.cleanroommc.blackbox.pipeline.lighting;
 
 import net.minecraft.client.renderer.GLAllocation;
 
@@ -12,8 +12,6 @@ public enum ColouredLightingHandler {
     private static final int STRUCT_SIZE = (4 + 3 + 1); // vec4 (colour) + vec3 (position) + float (radius)
 
     private FloatBuffer buffer;
-
-
 
     private void createUBO() {
         if (this.buffer == null) {

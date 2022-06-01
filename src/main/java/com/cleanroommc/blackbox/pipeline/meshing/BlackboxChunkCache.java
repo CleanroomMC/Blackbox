@@ -1,9 +1,9 @@
-package com.cleanroommc.blackbox.pipeline.core;
+package com.cleanroommc.blackbox.pipeline.meshing;
 
-import com.cleanroommc.blackbox.pipeline.handlers.DynamicLightingHandler;
+import com.cleanroommc.blackbox.pipeline.ClientObjects;
+import com.cleanroommc.blackbox.pipeline.lighting.DynamicLightingHandler;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
-import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -24,7 +24,7 @@ public class BlackboxChunkCache extends ChunkCache {
     private static final TrackedChunkObjects NULL_TRACKER = new TrackedChunkObjects();
     private static final ThreadLocal<Biome[]> trackedBiomes = ThreadLocal.withInitial(() -> new Biome[48 * 48]);
     private static final ThreadLocal<TrackedChunkObjects[]> trackedObjs = ThreadLocal.withInitial(() -> new TrackedChunkObjects[48 * 48 * 48]);
-    private static final IBlockState AIR = Blocks.AIR.getDefaultState();
+    private static final IBlockState AIR = ClientObjects.AIR_STATE;
 
     static {
         NULL_TRACKER.state = AIR;
@@ -57,6 +57,10 @@ public class BlackboxChunkCache extends ChunkCache {
                 this.cachedTrackedObjs = null;
             }
         }
+    }
+
+    public World getWorld() {
+        return this.world;
     }
 
     @Override

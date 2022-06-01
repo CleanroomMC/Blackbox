@@ -1,6 +1,6 @@
 package com.cleanroommc.blackbox.pipeline.core.mixins;
 
-import com.cleanroommc.blackbox.pipeline.handlers.DynamicLightingHandler;
+import com.cleanroommc.blackbox.pipeline.lighting.DynamicLightingHandler;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.profiler.Profiler;
 import net.minecraft.util.math.BlockPos;

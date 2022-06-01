@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = Blackbox.ID, name = Blackbox.NAME, version = Blackbox.VERSION)
+@Mod(modid = Blackbox.ID, name = Blackbox.NAME, version = Blackbox.VERSION, guiFactory = "com.cleanroommc.blackbox.config.BlackboxConfigGuiFactory")
 public class Blackbox {
 
 	public static final String ID = "blackbox";

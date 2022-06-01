@@ -1,5 +1,6 @@
-package com.cleanroommc.blackbox.pipeline.handlers;
+package com.cleanroommc.blackbox.pipeline.lighting;
 
+import com.cleanroommc.blackbox.config.category.lighting.DynamicLightingConfig;
 import com.cleanroommc.blackbox.pipeline.core.ILitEntity;
 import com.cleanroommc.blackbox.pipeline.core.IRenderGlobalExpansion;
 import com.cleanroommc.blackbox.pipeline.notifiers.IEntityStatusNotifier;
@@ -32,7 +33,6 @@ public enum DynamicLightingHandler implements IEntityStatusNotifier, ISetupTerra
 
     INSTANCE;
 
-    private final int renderTimeGap = 200;
     private final Reference2IntMap<Item> itemMapping = new Reference2IntOpenHashMap<>(16);
     private final Set<LitInstance> instances = new ReferenceOpenHashSet<>(256);
 
@@ -144,7 +144,7 @@ public enum DynamicLightingHandler implements IEntityStatusNotifier, ISetupTerra
         EntityPlayer self = Minecraft.getMinecraft().player;
         if (self != null) {
             long time = System.currentTimeMillis();
-            if (time > this.renderTime + this.renderTimeGap) {
+            if (time > this.renderTime + DynamicLightingConfig.updateFrequency) {
                 this.renderTime = time;
                 ILitEntity litSelf = (ILitEntity) self;
                 LitInstance selfLitInstance = litSelf.getLitInstance();

@@ -1,7 +1,6 @@
 package com.cleanroommc.blackbox.pipeline.notifiers;
 
-import com.cleanroommc.blackbox.pipeline.handlers.DynamicLightingHandler;
-import net.minecraft.entity.Entity;
+import com.cleanroommc.blackbox.pipeline.lighting.DynamicLightingHandler;
 
 import java.util.ArrayList;
 import java.util.List;
