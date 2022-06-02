@@ -14,10 +14,10 @@ public class DynamicDarknessConfig {
 
     @SlidingOption
     @RangeDouble(min = 0.0F, max = 1.0F)
-    public static double minMoonBrightness = 0.1F;
+    public static double minMoonBrightness = 0.05D;
 
     @SlidingOption
     @RangeDouble(min = 0.0F, max = 1.0F)
-    public static double maxMoonBrightness = 0.75F;
+    public static double maxMoonBrightness = 0.75D;
 
 }
