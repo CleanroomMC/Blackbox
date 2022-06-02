@@ -17,7 +17,4 @@ public class DynamicDarknessConfig {
     @RangeDouble(min = 0.0F, max = 1.0F)
     public static double maxMoonBrightness = 0.75F;
 
-    @RangeDouble(min = 0.0F, max = 1.0F)
-    public static double minBrightness = 0.1F;
-
 }
