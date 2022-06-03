@@ -14,7 +14,10 @@ import java.util.Set;
 
 public class BlackboxConfigGuiFactory implements IModGuiFactory {
 
+    public static BlackboxConfigGuiFactory INSTANCE;
+
     public BlackboxConfigGuiFactory() {
+        INSTANCE = this;
         MinecraftForge.EVENT_BUS.register(this);
     }
 

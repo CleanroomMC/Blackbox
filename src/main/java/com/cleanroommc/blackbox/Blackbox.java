@@ -1,10 +1,12 @@
 package com.cleanroommc.blackbox;
 
+import com.cleanroommc.blackbox.keybinding.BlackboxKeybinding;
 import com.cleanroommc.blackbox.shaders.ShaderTypes;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLConstructionEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,6 +24,13 @@ public class Blackbox {
 	public void construct(FMLConstructionEvent event) {
 		if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
 			ShaderTypes.init();
+		}
+	}
+
+	@Mod.EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
+		if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
+			BlackboxKeybinding.init();
 		}
 	}
 
