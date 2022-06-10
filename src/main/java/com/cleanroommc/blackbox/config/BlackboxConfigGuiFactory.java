@@ -8,6 +8,7 @@ import net.minecraftforge.common.config.Config.Type;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.IModGuiFactory;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.Set;
@@ -18,7 +19,9 @@ public class BlackboxConfigGuiFactory implements IModGuiFactory {
 
     public BlackboxConfigGuiFactory() {
         INSTANCE = this;
-        MinecraftForge.EVENT_BUS.register(this);
+        if (FMLCommonHandler.instance().getSide().isClient()) {
+            MinecraftForge.EVENT_BUS.register(this);
+        }
     }
 
     @Override

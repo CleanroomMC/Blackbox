@@ -5,6 +5,9 @@ import org.lwjgl.opengl.GLContext;
 
 import java.util.function.BooleanSupplier;
 
+/**
+ * TODO: When Danvil is out, try to support 4.6+ when we move LWJGL to v3
+ */
 public enum OpenGLVersion {
 
 	GL20("OpenGL 2.0", () -> GLContext.getCapabilities().OpenGL20),
@@ -15,6 +18,21 @@ public enum OpenGLVersion {
 	GL44("OpenGL 4.4", () -> GLContext.getCapabilities().OpenGL44),
 	GL45("OpenGL 4.5", () -> GLContext.getCapabilities().OpenGL45);
 
+	private static OpenGLVersion highestSupportedVersion;
+
+	public static OpenGLVersion getHighestSupportedVersion() {
+		if (highestSupportedVersion == null) {
+			for (OpenGLVersion version : OpenGLVersion.values()) {
+				if (version.supported) {
+					highestSupportedVersion = version;
+				} else {
+					break;
+				}
+			}
+		}
+		return highestSupportedVersion;
+	}
+
 	public final boolean supported;
 
 	OpenGLVersion(String name, BooleanSupplier supplier) {
@@ -22,7 +40,7 @@ public enum OpenGLVersion {
 		try {
 			supported = supplier.getAsBoolean();
 		} catch (Throwable t) {
-			Blackbox.LOGGER.error("{} is not supported!", name);
+			Blackbox.LOGGER.debug("{} is not supported!", name);
 			supported = false;
 		}
 		this.supported = supported;
