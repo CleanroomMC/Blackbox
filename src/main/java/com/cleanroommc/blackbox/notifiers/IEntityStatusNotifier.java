@@ -1,4 +1,4 @@
-package com.cleanroommc.blackbox.pipeline.notifiers;
+package com.cleanroommc.blackbox.notifiers;
 
 import net.minecraft.entity.Entity;
 
