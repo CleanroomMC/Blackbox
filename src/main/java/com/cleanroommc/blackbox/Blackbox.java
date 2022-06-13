@@ -24,6 +24,7 @@ public class Blackbox {
 	public void construct(FMLConstructionEvent event) {
 		if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
 			ShaderTypes.init();
+			ClientNotifiers.INSTANCE.registerEventListener();
 		}
 	}
 
