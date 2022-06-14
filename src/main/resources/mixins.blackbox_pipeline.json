@@ -5,8 +5,7 @@
   "minVersion": "0.8",
   "compatibilityLevel": "JAVA_8",
   "client": [
-    "ActiveRenderInfoAccessor",
-    "BufferBuilderAccessor",
+    "BlockModelShapesMixin",
     "EntityMixin",
     "EntityRendererAccessor",
     "EntityRendererMixin",

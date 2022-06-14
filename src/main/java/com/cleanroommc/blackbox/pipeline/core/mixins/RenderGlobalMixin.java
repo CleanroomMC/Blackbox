@@ -1,7 +1,7 @@
 package com.cleanroommc.blackbox.pipeline.core.mixins;
 
 import com.cleanroommc.blackbox.pipeline.core.IRenderGlobalExpansion;
-import com.cleanroommc.blackbox.pipeline.notifiers.ClientNotifiers;
+import com.cleanroommc.blackbox.notifiers.ClientNotifier;
 import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.renderer.ViewFrustum;
 import net.minecraft.client.renderer.chunk.RenderChunk;
@@ -27,7 +27,7 @@ public class RenderGlobalMixin implements IRenderGlobalExpansion {
 
     @Inject(method = "setupTerrain", at = @At(value = "INVOKE", target = "Lnet/minecraft/profiler/Profiler;endStartSection(Ljava/lang/String;)V", ordinal = 3))
     private void beforeUpdateSection(Entity viewEntity, double partialTicks, ICamera camera, int frameCount, boolean playerSpectator, CallbackInfo ci) {
-        ClientNotifiers.INSTANCE.getSetupTerrainNotifiers().forEach(notifier -> notifier.renderTerrainUpdate(viewEntity, partialTicks, camera, frameCount, playerSpectator));
+        ClientNotifier.SETUP_TERRAIN.forEachListener(notifier -> notifier.renderTerrainUpdate(viewEntity, partialTicks, camera, frameCount, playerSpectator));
     }
 
     /**
@@ -35,7 +35,7 @@ public class RenderGlobalMixin implements IRenderGlobalExpansion {
      */
     @Overwrite
     public void onEntityAdded(Entity entity) {
-        ClientNotifiers.INSTANCE.getEntityStatusNotifiers().forEach(notifier -> notifier.onEntityAdded(entity));
+        ClientNotifier.ENTITY_STATUS.forEachListener(notifier -> notifier.onEntityAdded(entity));
     }
 
     /**
@@ -43,7 +43,7 @@ public class RenderGlobalMixin implements IRenderGlobalExpansion {
      */
     @Overwrite
     public void onEntityRemoved(Entity entity) {
-        ClientNotifiers.INSTANCE.getEntityStatusNotifiers().forEach(notifier -> notifier.onEntityRemoved(entity));
+        ClientNotifier.ENTITY_STATUS.forEachListener(notifier -> notifier.onEntityRemoved(entity));
     }
 
 }

@@ -1,26 +1,6 @@
 package com.cleanroommc.blackbox.util;
 
-import com.cleanroommc.blackbox.pipeline.core.mixins.ActiveRenderInfoAccessor;
-import net.minecraft.client.renderer.GLAllocation;
-import org.lwjgl.util.vector.Matrix4f;
-
-import java.nio.FloatBuffer;
-
 public class RenderHelper {
-
-    private static final Matrix4f modelViewCacheMatrix4f = new Matrix4f();
-    private static final Matrix4f projectionCacheMatrix4f = new Matrix4f();
-    private static final FloatBuffer modelViewProjectionBuffer = GLAllocation.createDirectFloatBuffer(16);
-
-    public static FloatBuffer getModelViewProjectionBuffer() {
-        modelViewCacheMatrix4f.load(ActiveRenderInfoAccessor.getModelViewMatrix());
-        projectionCacheMatrix4f.load(ActiveRenderInfoAccessor.getProjectionMatrix());
-        Matrix4f.mul(projectionCacheMatrix4f, modelViewCacheMatrix4f, projectionCacheMatrix4f);
-        modelViewProjectionBuffer.clear();
-        projectionCacheMatrix4f.store(modelViewProjectionBuffer);
-        modelViewProjectionBuffer.flip();
-        return modelViewProjectionBuffer;
-    }
 
     public static float getLuminanceFromRGB(float r, float g, float b) {
         return r * 0.2126F + g * 0.7152F + b * 0.0722F;

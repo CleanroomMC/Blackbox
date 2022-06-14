@@ -1,6 +1,6 @@
 package com.cleanroommc.blackbox.pipeline.core.mixins;
 
-import com.cleanroommc.blackbox.pipeline.core.BlackboxChunkCache;
+import com.cleanroommc.blackbox.pipeline.meshing.BlackboxChunkCache;
 import net.minecraft.client.renderer.chunk.ChunkCompileTaskGenerator;
 import net.minecraft.client.renderer.chunk.RenderChunk;
 import net.minecraft.util.math.BlockPos;
