@@ -41,6 +41,7 @@ public class BlackboxCore implements IFMLLoadingPlugin, IEarlyMixinLoader {
 	public List<String> getMixinConfigs() {
 		return Lists.newArrayList(
 				"mixins.blackbox_config.json",
+				"mixins.blackbox_details.json",
 				"mixins.blackbox_fixes.json",
 				"mixins.blackbox_misc.json",
 				"mixins.blackbox_optimization.json",
