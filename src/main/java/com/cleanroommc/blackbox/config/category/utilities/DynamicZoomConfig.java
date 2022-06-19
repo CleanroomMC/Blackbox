@@ -6,7 +6,7 @@ import net.minecraftforge.common.config.Config.RangeDouble;
 import net.minecraftforge.common.config.Config.RangeInt;
 import net.minecraftforge.common.config.Config.SlidingOption;
 
-@Config(modid = Blackbox.ID, name = "/blackbox/utilities/dynamic_zoom")
+@Config(modid = Blackbox.ID, name = "/blackbox/utilities/dynamic_zoom", category = "dynamic_zoom")
 public class DynamicZoomConfig {
 
     public static boolean saveZoomLevel = false;

@@ -1,9 +1,9 @@
-package com.cleanroommc.blackbox.details.core.mixins;
+package com.cleanroommc.blackbox.details.core.mixins.leaves;
 
 import com.cleanroommc.blackbox.config.category.details.LeavesDetailsConfig;
-import com.cleanroommc.blackbox.details.core.LeavesDetail;
-import com.cleanroommc.blackbox.details.core.LeavesDetail.Natural;
-import com.cleanroommc.blackbox.details.core.LeavesDetail.Placed;
+import com.cleanroommc.blackbox.details.core.leaves.LeavesDetail;
+import com.cleanroommc.blackbox.details.core.leaves.LeavesDetail.Natural;
+import com.cleanroommc.blackbox.details.core.leaves.LeavesDetail.Placed;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.material.Material;

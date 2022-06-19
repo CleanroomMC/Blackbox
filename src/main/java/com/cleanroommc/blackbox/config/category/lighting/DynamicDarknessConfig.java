@@ -5,7 +5,7 @@ import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Config.RangeDouble;
 import net.minecraftforge.common.config.Config.SlidingOption;
 
-@Config(modid = Blackbox.ID, name = "/blackbox/lighting/dynamic_darkness")
+@Config(modid = Blackbox.ID, name = "/blackbox/lighting/dynamic_darkness", category = "dynamic_darkness")
 public class DynamicDarknessConfig {
 
     public static boolean enabled = true;

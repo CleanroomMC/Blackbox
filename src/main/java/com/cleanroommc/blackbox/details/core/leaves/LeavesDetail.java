@@ -1,4 +1,4 @@
-package com.cleanroommc.blackbox.details.core;
+package com.cleanroommc.blackbox.details.core.leaves;
 
 public enum LeavesDetail {
 

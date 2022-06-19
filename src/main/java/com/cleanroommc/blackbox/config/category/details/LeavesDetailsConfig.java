@@ -2,12 +2,12 @@ package com.cleanroommc.blackbox.config.category.details;
 
 import com.cleanroommc.blackbox.Blackbox;
 import com.cleanroommc.blackbox.config.core.RefreshScene;
-import com.cleanroommc.blackbox.details.core.LeavesDetail;
-import com.cleanroommc.blackbox.details.core.LeavesDetail.Natural;
-import com.cleanroommc.blackbox.details.core.LeavesDetail.Placed;
+import com.cleanroommc.blackbox.details.core.leaves.LeavesDetail;
+import com.cleanroommc.blackbox.details.core.leaves.LeavesDetail.Natural;
+import com.cleanroommc.blackbox.details.core.leaves.LeavesDetail.Placed;
 import net.minecraftforge.common.config.Config;
 
-@Config(modid = Blackbox.ID, name = "/blackbox/details/leaves")
+@Config(modid = Blackbox.ID, name = "/blackbox/details/leaves", category = "leaves")
 public class LeavesDetailsConfig {
 
     @RefreshScene
