@@ -1,5 +1,6 @@
 package com.cleanroommc.blackbox.pipeline.core.mixins;
 
+import com.cleanroommc.blackbox.config.category.lighting.DynamicLightingConfig;
 import com.cleanroommc.blackbox.pipeline.lighting.DynamicLightingHandler;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.profiler.Profiler;
@@ -20,7 +21,9 @@ public abstract class WorldClientMixin extends World {
 
     @Override
     public int getCombinedLight(BlockPos pos, int lightValue) {
-        return DynamicLightingHandler.INSTANCE.getEntityDynamicCombinedLight(pos, super.getCombinedLight(pos, lightValue));
+        return DynamicLightingConfig.enabled ?
+                DynamicLightingHandler.INSTANCE.getEntityDynamicCombinedLight(pos, super.getCombinedLight(pos, lightValue)) :
+                super.getCombinedLight(pos, lightValue);
     }
 
 }

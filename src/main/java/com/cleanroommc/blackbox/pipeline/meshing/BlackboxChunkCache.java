@@ -1,5 +1,6 @@
 package com.cleanroommc.blackbox.pipeline.meshing;
 
+import com.cleanroommc.blackbox.config.category.lighting.DynamicLightingConfig;
 import com.cleanroommc.blackbox.pipeline.lighting.DynamicLightingHandler;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
@@ -78,7 +79,9 @@ public class BlackboxChunkCache extends ChunkCache {
         if (blockLight < lightValue) {
             blockLight = lightValue;
         }
-        return DynamicLightingHandler.INSTANCE.getDynamicCombinedLight(pos, tracker.skyLight << 20 | blockLight << 4);
+        return DynamicLightingConfig.enabled ?
+                DynamicLightingHandler.INSTANCE.getDynamicCombinedLight(pos, tracker.skyLight << 20 | blockLight << 4) :
+                tracker.skyLight << 20 | blockLight << 4;
     }
     
     @Override

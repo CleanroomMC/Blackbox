@@ -1,5 +1,6 @@
 package com.cleanroommc.blackbox.pipeline.core.mixins;
 
+import com.cleanroommc.blackbox.config.category.lighting.DynamicLightingConfig;
 import com.cleanroommc.blackbox.pipeline.core.ILitEntity;
 import com.cleanroommc.blackbox.pipeline.lighting.DynamicLightingHandler;
 import com.cleanroommc.blackbox.pipeline.lighting.DynamicLightingHandler.LitInstance;
@@ -23,7 +24,7 @@ public class EntityMixin implements ILitEntity {
 
     @Inject(method = "onUpdate", at = @At("RETURN"))
     private void onUpdate(CallbackInfo ci) {
-        if (this.world.isRemote) {
+        if (this.world.isRemote && DynamicLightingConfig.enabled) {
             DynamicLightingHandler.INSTANCE.updateTick((Entity) (Object) this);
         }
     }
