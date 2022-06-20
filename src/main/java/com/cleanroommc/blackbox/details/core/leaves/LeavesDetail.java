@@ -5,13 +5,15 @@ public enum LeavesDetail {
     OFF,
     FAST,
     FANCY,
-    SMART;
+    SMART,
+    FANCY_SMART;
 
     public enum Natural {
 
         FAST,
         FANCY,
-        SMART;
+        SMART,
+        FANCY_SMART;
 
     }
 
@@ -19,7 +21,8 @@ public enum LeavesDetail {
 
         FAST,
         FANCY,
-        SMART;
+        SMART,
+        FANCY_SMART;
 
     }
 

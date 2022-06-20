@@ -53,6 +53,7 @@ public abstract class BlockLeavesMixin extends Block {
     public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
         switch (LeavesDetailsConfig.leavesMode) {
             case SMART:
+            case FANCY_SMART:
                 return !(world.getBlockState(pos.offset(side)).getBlock() instanceof BlockLeaves);
             case FAST:
                 return !(world.getBlockState(pos.offset(side)).getBlock() == this);
@@ -62,6 +63,7 @@ public abstract class BlockLeavesMixin extends Block {
         if (state.getValue(DECAYABLE)) {
             switch (LeavesDetailsConfig.naturalLeavesMode) {
                 case SMART:
+                case FANCY_SMART:
                     return !(world.getBlockState(pos.offset(side)).getBlock() instanceof BlockLeaves);
                 case FAST:
                     return !(world.getBlockState(pos.offset(side)).getBlock() == this);
@@ -71,6 +73,7 @@ public abstract class BlockLeavesMixin extends Block {
         }
         switch (LeavesDetailsConfig.placedLeavesMode) {
             case SMART:
+            case FANCY_SMART:
                 return !(world.getBlockState(pos.offset(side)).getBlock() instanceof BlockLeaves);
             case FAST:
                 return !(world.getBlockState(pos.offset(side)).getBlock() == this);

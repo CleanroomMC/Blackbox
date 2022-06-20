@@ -10,8 +10,7 @@
     "EntityMixin",
     "EntityRendererAccessor",
     "EntityRendererMixin",
-    "MinecraftMixin",
-    "RenderChunkMixin",
+    "ForgeBlockModelRendererAccessor",
     "RenderGlobalMixin",
     "ViewFrustumAccessor",
     "WorldClientMixin"

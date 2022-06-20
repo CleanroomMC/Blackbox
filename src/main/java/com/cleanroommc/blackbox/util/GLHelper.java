@@ -9,7 +9,7 @@ public class GLHelper {
     public static void checkGLError(String message) {
         int i = GlStateManager.glGetError();
         if (i != 0) {
-            Blackbox.LOGGER.error("###### Blackbox GL ERROR ######");
+            Blackbox.LOGGER.error("###### Blackbox GL Error ######");
             Blackbox.LOGGER.error("@ {}", message);
             Blackbox.LOGGER.error("{}: {}", i, GLU.gluErrorString(i));
         }
