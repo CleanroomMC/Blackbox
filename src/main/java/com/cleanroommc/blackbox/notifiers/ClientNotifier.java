@@ -2,6 +2,7 @@ package com.cleanroommc.blackbox.notifiers;
 
 import com.cleanroommc.blackbox.optimization.signs.HadEnoughSigns;
 import com.cleanroommc.blackbox.pipeline.lighting.DynamicLightingHandler;
+import com.cleanroommc.blackbox.resource.BlackboxResourceLoader;
 import net.minecraftforge.common.MinecraftForge;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class ClientNotifier<T> {
     public static final ClientNotifier<ISetupTerrainNotifier> SETUP_TERRAIN = new ClientNotifier<>(ISetupTerrainNotifier.class, false);
 
     public static void init() {
+        distribute(BlackboxResourceLoader.INSTANCE);
         distribute(DynamicLightingHandler.INSTANCE);
         distribute(HadEnoughSigns.INSTANCE);
     }
