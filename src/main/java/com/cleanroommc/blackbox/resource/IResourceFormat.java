@@ -20,4 +20,6 @@ public interface IResourceFormat {
 
     void read(IResourceManager manager, IResource resource, boolean isReloading) throws IOException;
 
+    boolean isApplicable();
+
 }

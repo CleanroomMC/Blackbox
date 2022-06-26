@@ -12,6 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.resource.IResourceType;
 import net.minecraftforge.client.resource.ISelectiveResourceReloadListener;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import org.apache.commons.io.IOUtils;
 
 import java.io.FileNotFoundException;
 import java.util.Map;
@@ -26,7 +27,7 @@ public enum BlackboxResourceLoader implements IFMLLifecycleNotifier {
     private boolean reloading = false;
 
     BlackboxResourceLoader() {
-        registerResourceFormat(new EmissiveResourceFormat());
+        registerResourceFormat(EmissiveResourceFormat.INSTANCE);
     }
 
     @Override
@@ -47,9 +48,12 @@ public enum BlackboxResourceLoader implements IFMLLifecycleNotifier {
                         if (format.considerAllNamespaces()) {
                             for (IResource resource : manager.getAllResources(new ResourceLocation(fileName))) {
                                 format.read(manager, resource, this.reloading);
+                                IOUtils.closeQuietly(resource);
                             }
                         } else {
-                            format.read(manager, manager.getResource(new ResourceLocation(fileName)), this.reloading);
+                            try (IResource resource = manager.getResource(new ResourceLocation(fileName))) {
+                                format.read(manager, resource, this.reloading);
+                            }
                         }
                     } catch (FileNotFoundException e) {
                         Blackbox.LOGGER.debug("Blackbox[{}] cannot find {}. Skipping.", format.getClass().getSimpleName() + ".class", fileName);

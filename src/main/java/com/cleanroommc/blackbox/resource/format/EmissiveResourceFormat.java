@@ -1,5 +1,6 @@
 package com.cleanroommc.blackbox.resource.format;
 
+import com.cleanroommc.blackbox.config.category.custom.EmissivityConfig;
 import com.cleanroommc.blackbox.resource.IResourceFormat;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
@@ -12,9 +13,11 @@ import java.util.List;
 import java.util.Properties;
 import java.util.function.Predicate;
 
-public class EmissiveResourceFormat implements IResourceFormat {
+public enum EmissiveResourceFormat implements IResourceFormat {
 
-    private String suffix;
+    INSTANCE;
+
+    private String suffix = "";
 
     @Override
     public List<String> getFileNames() {
@@ -31,6 +34,15 @@ public class EmissiveResourceFormat implements IResourceFormat {
         Properties properties = new Properties();
         properties.load(file.getInputStream());
         this.suffix = properties.getProperty("suffix.emissive", "_e");
+    }
+
+    @Override
+    public boolean isApplicable() {
+        return !this.suffix.isEmpty() && EmissivityConfig.enabled;
+    }
+
+    public String getSuffix() {
+        return suffix;
     }
 
 }
