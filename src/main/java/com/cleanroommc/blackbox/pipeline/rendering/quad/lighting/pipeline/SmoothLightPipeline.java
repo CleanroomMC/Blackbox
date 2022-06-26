@@ -1,7 +1,8 @@
-package com.cleanroommc.blackbox.pipeline.rendering.quad.lighting;
+package com.cleanroommc.blackbox.pipeline.rendering.quad.lighting.pipeline;
 
 import com.cleanroommc.blackbox.pipeline.rendering.quad.BakedQuadExtension;
-import com.cleanroommc.blackbox.pipeline.rendering.quad.flags.BakedQuadFlags;
+import com.cleanroommc.blackbox.pipeline.rendering.quad.BakedQuadFlags;
+import com.cleanroommc.blackbox.pipeline.rendering.quad.lighting.LightDataAccess;
 import com.cleanroommc.blackbox.pipeline.rendering.quad.lighting.ao.AOFaceData;
 import com.cleanroommc.blackbox.pipeline.rendering.quad.lighting.ao.AONeighbourInfo;
 import com.cleanroommc.blackbox.util.MathUtil;

@@ -1,7 +1,7 @@
 package com.cleanroommc.blackbox.pipeline.core.mixins;
 
 import com.cleanroommc.blackbox.pipeline.rendering.quad.BakedQuadExtension;
-import com.cleanroommc.blackbox.pipeline.rendering.quad.flags.BakedQuadFlags;
+import com.cleanroommc.blackbox.pipeline.rendering.quad.BakedQuadFlags;
 import com.cleanroommc.blackbox.util.BakedQuadHelper;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import org.spongepowered.asm.mixin.Final;

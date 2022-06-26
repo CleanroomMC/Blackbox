@@ -1,7 +1,8 @@
-package com.cleanroommc.blackbox.pipeline.rendering.quad.lighting;
+package com.cleanroommc.blackbox.pipeline.rendering.quad.lighting.pipeline;
 
 import com.cleanroommc.blackbox.pipeline.rendering.quad.BakedQuadExtension;
-import com.cleanroommc.blackbox.pipeline.rendering.quad.flags.BakedQuadFlags;
+import com.cleanroommc.blackbox.pipeline.rendering.quad.BakedQuadFlags;
+import com.cleanroommc.blackbox.pipeline.rendering.quad.lighting.LightDataAccess;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;

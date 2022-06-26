@@ -1,4 +1,4 @@
-package com.cleanroommc.blackbox.pipeline.rendering.quad.lighting;
+package com.cleanroommc.blackbox.pipeline.rendering.quad.lighting.pipeline;
 
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.util.EnumFacing;

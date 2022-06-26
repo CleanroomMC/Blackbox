@@ -1,6 +1,5 @@
-package com.cleanroommc.blackbox.pipeline.rendering.quad.flags;
+package com.cleanroommc.blackbox.pipeline.rendering.quad;
 
-import com.cleanroommc.blackbox.pipeline.rendering.quad.BakedQuadExtension;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.util.EnumFacing;
 
