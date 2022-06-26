@@ -19,7 +19,7 @@ public class FlatLightPipeline implements ILightPipeline {
     }
 
     @Override
-    public void calculate(BakedQuad quad, BlockPos pos, Pair<float[], float[]> out, EnumFacing face, boolean shade) {
+    public void calculate(BakedQuad quad, BlockPos pos, Pair<float[], int[]> out, EnumFacing face, boolean shade) {
         if ((((BakedQuadExtension) quad).getFlags() & BakedQuadFlags.GRID_ALIGNED) != 0) { // TODO: && !hasEmissiveLighting
             Arrays.fill(out.getRight(), LightDataAccess.unpackLM(this.lightDataAccess.get(pos, face)));
         } else {

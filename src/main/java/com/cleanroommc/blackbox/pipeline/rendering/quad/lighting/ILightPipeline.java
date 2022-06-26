@@ -20,6 +20,6 @@ public interface ILightPipeline {
      * @param face The pre-computed facing vector of the quad
      * @param shade True if the block is shaded by ambient occlusion
      */
-    void calculate(BakedQuad quad, BlockPos pos, Pair<float[], float[]> out, EnumFacing face, boolean shade);
+    void calculate(BakedQuad quad, BlockPos pos, Pair<float[], int[]> out, EnumFacing face, boolean shade);
 
 }
