@@ -5,14 +5,21 @@
   "minVersion": "0.8",
   "compatibilityLevel": "JAVA_8",
   "client": [
+    "BakedQuadMixin",
     "BlockModelShapesMixin",
     "BlockRendererDispatcherMixin",
     "EntityMixin",
     "EntityRendererAccessor",
     "EntityRendererMixin",
     "ForgeBlockModelRendererAccessor",
+    "RenderChunkMixin",
     "RenderGlobalMixin",
+    "TextureAtlasSpriteMixin",
+    "TextureMapMixin",
     "ViewFrustumAccessor",
     "WorldClientMixin"
+  ],
+  "mixins": [
+    "VertexLighterFlatMixin"
   ]
 }

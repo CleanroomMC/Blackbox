@@ -10,9 +10,9 @@ public interface BakedQuadExtension {
 
     int getColour(int index);
 
-    int getU(int index);
+    float getU(int index);
 
-    int getV(int index);
+    float getV(int index);
 
     int getFlags();
 
