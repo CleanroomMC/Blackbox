@@ -25,7 +25,8 @@ public class FlatLightPipeline implements ILightPipeline {
         } else {
             Arrays.fill(out.getRight(), LightDataAccess.unpackLM(this.lightDataAccess.get(pos)));
         }
-        Arrays.fill(out.getLeft(), LightUtil.diffuseLight(face) /*this.lightDataAccess.getWorld().getBrightness()*/); // TODO: change this to account for different dimensions
+        // TODO: change this to account for different dimensions
+        Arrays.fill(out.getLeft(), shade ? LightUtil.diffuseLight(face) : 1.0F /*this.lightDataAccess.getWorld().getBrightness()*/);
     }
 
 }

@@ -70,7 +70,7 @@ public class SmoothLightPipeline implements ILightPipeline {
 
     private void applySidedBrightness(Pair<float[], int[]> out, EnumFacing face, boolean shade) {
         // float brightness = this.lightDataAccess.getWorld().getBrightness(face, shade);
-        float brightness = LightUtil.diffuseLight(face);
+        float brightness = shade ? LightUtil.diffuseLight(face) : 1.0F;
         float[] br = out.getLeft();
         for (int i = 0; i < br.length; i++) {
             br[i] *= brightness;
