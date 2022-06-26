@@ -7,7 +7,7 @@ public class BakedQuadHelper {
     public static final int POSITION_Z_INDEX = 2;
     public static final int COLOUR_INDEX = 3;
     public static final int TEXTURE_U_INDEX = 4;
-    public static final int TEXTURE_V_INDEX = 4;
+    public static final int TEXTURE_V_INDEX = 5;
     public static final int LIGHT_INDEX = 6;
 
     // Size of vertex format in 4-byte integers
