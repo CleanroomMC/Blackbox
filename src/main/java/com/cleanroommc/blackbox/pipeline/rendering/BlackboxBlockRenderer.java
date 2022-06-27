@@ -1,9 +1,12 @@
 package com.cleanroommc.blackbox.pipeline.rendering;
 
 import com.cleanroommc.blackbox.pipeline.rendering.quad.BakedQuadExtension;
+import com.cleanroommc.blackbox.pipeline.rendering.quad.blending.BlockColorsExtended;
+import com.cleanroommc.blackbox.pipeline.rendering.quad.blending.IColourBlender;
 import com.cleanroommc.blackbox.pipeline.rendering.quad.lighting.BakedQuadOrientation;
 import com.cleanroommc.blackbox.pipeline.rendering.quad.lighting.pipeline.ILightPipeline;
 import com.cleanroommc.blackbox.pipeline.rendering.quad.lighting.pipeline.LightPipelineProvider;
+import com.cleanroommc.blackbox.util.ColourHelper;
 import com.cleanroommc.blackbox.util.MathUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -12,6 +15,7 @@ import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.color.BlockColors;
+import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -19,19 +23,22 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import org.apache.commons.lang3.tuple.MutablePair;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class BlackboxBlockRenderer {
 
     private final boolean useAO;
-    private final BlockColors blockColours;
+    private final BlockColorsExtended blockColours;
     private final LightPipelineProvider lighterProvider;
+    private final IColourBlender colourBlender;
     private final MutablePair<float[], int[]> lightData = MutablePair.of(new float[4], new int[4]);
 
-    public BlackboxBlockRenderer(BlockColors blockColours, LightPipelineProvider lighterProvider) {
+    public BlackboxBlockRenderer(BlockColors blockColours, LightPipelineProvider lighterProvider, IColourBlender colourBlender) {
         this.useAO = Minecraft.isAmbientOcclusionEnabled();
-        this.blockColours = blockColours;
+        this.blockColours = (BlockColorsExtended) blockColours;
         this.lighterProvider = lighterProvider;
+        this.colourBlender = colourBlender;
     }
 
     /**
@@ -56,21 +63,24 @@ public class BlackboxBlockRenderer {
     }
 
     private void renderQuads(List<BakedQuad> quads, IBlockAccess world, IBlockState state, BlockPos pos, BufferBuilder buffer, ILightPipeline lighter) {
+        IBlockColor blockColour = null;
+        // This is a very hot allocation, iterate over it manually
         for (int i = 0, length = quads.size(); i < length; i++) {
             BakedQuad quad = quads.get(i);
             lighter.calculate(quad, pos, this.lightData, quad.getFace(), quad.shouldApplyDiffuseLighting());
-            renderQuad(quad, world, state, pos, buffer);
+            if (quad.hasTintIndex() && blockColour == null) {
+                blockColour = this.blockColours.getColourInstance(state.getBlock());
+            }
+            renderQuad(quad, world, state, pos, blockColour, buffer);
         }
     }
 
-    private void renderQuad(BakedQuad quad, IBlockAccess world, IBlockState state, BlockPos pos, BufferBuilder buffer) {
+    private void renderQuad(BakedQuad quad, IBlockAccess world, IBlockState state, BlockPos pos, @Nullable IBlockColor blockColour, BufferBuilder buffer) {
         BakedQuadExtension extendedQuad = (BakedQuadExtension) quad;
         BakedQuadOrientation orientation = BakedQuadOrientation.orientByBrightness(this.lightData.left);
-        if (quad.hasTintIndex()) {
-            int multiplier = this.blockColours.colorMultiplier(state, world, pos, quad.getTintIndex());
-            if (EntityRenderer.anaglyphEnable) {
-                multiplier = TextureUtil.anaglyphColor(multiplier);
-            }
+        int[] colours = null;
+        if (blockColour != null) {
+            colours = this.colourBlender.getColours(world, pos, quad, blockColour, state);
         }
         for (int i = 0; i < 4; i++) {
             int index = orientation.getVertexIndex(i);
@@ -83,6 +93,11 @@ public class BlackboxBlockRenderer {
                 y += offset.y;
                 z += offset.z;
             }
+            int colour = ColourHelper.ABGR.mul(colours != null ? colours[i] : 0xFFFFFFFF, this.lightData.left[i]);
+            float u = extendedQuad.getU(i);
+            float v = extendedQuad.getV(i);
+            int lightmap = this.lightData.right[i];
+            // writeVertex
         }
     }
 
