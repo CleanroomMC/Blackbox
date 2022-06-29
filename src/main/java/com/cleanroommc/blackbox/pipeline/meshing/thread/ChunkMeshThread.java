@@ -6,25 +6,36 @@ public class ChunkMeshThread extends Thread {
 
     static final AtomicInteger nextInteger = new AtomicInteger();
 
-    private static ThreadGroup threadGroup;
+    private static int numOfThread = 0;
+    private static ChunkMeshThread[] currentThreads = null;
 
-    public static void primeThreads(int threadCount, Runnable target) {
-        if (threadGroup == null) {
-            threadGroup = new ThreadGroup("Chunk-Meshers");
-            threadGroup.setDaemon(true);
+    public static void startThreads(int threadCount, int threadPriority) {
+        if (currentThreads != null) {
+            throw new IllegalStateException("There are ongoing ChunkMeshThreads.");
         }
+        numOfThread = 0;
+        currentThreads = new ChunkMeshThread[threadCount];
         for (int i = 0; i < threadCount; i++) {
-            new ChunkMeshThread(target);
+            new ChunkMeshThread(threadPriority);
         }
     }
 
-    private static int numOfThread = 0;
+    public static void stopThreads() {
+        for (ChunkMeshThread thread : currentThreads) {
+            try {
+                thread.join();
+            } catch (InterruptedException ignored) { }
+        }
+        currentThreads = null;
+    }
 
     private Object[] localObjects = new Object[4];
 
-    private ChunkMeshThread(Runnable target) {
-        super(threadGroup, target, "Chunk-Mesher-" + numOfThread++);
+    private ChunkMeshThread(int threadPriority) {
+        super((Runnable) null, "Chunk-Mesher #" + numOfThread++);
+        setPriority(threadPriority);
         setDaemon(true);
+        setUncaughtExceptionHandler(ChunkMeshThreadUncaughtExceptionHandler.INSTANCE);
     }
 
     public <T> T getLocalValue(LocalMeshObject<T> object) {
@@ -43,6 +54,11 @@ public class ChunkMeshThread extends Thread {
             this.localObjects = new Object[object.index + 1];
         }
         this.localObjects[object.index] = value;
+    }
+
+    @Override
+    public void run() {
+
     }
 
 }

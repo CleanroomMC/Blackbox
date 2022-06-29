@@ -4,7 +4,7 @@ import java.util.function.Supplier;
 
 public class LocalMeshObject<T> {
 
-    public static <T> LocalMeshObject<T> of(Supplier<T> supplier) {
+    public static <T> LocalMeshObject<T> with(Supplier<T> supplier) {
         return new LocalMeshObject<>(supplier);
     }
 
