@@ -10,7 +10,7 @@ import net.minecraftforge.common.config.Config.LangKey;
 @LangKey("blackbox.custom.emissivity")
 public class EmissivityConfig {
 
-    @RefreshResources(VanillaResourceType.TEXTURES)
+    @RefreshResources(VanillaResourceType.MODELS)
     @LangKey("blackbox.custom.emissivity.enabled")
     public static boolean enabled = true;
 
