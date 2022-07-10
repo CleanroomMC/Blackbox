@@ -1,18 +1,34 @@
 package com.cleanroommc.blackbox.util;
 
-import com.cleanroommc.blackbox.Blackbox;
-import net.minecraft.client.renderer.GlStateManager;
-import org.lwjgl.util.glu.GLU;
+import com.cleanroommc.blackbox.opengl.buffer.GLBufferUsage;
+import org.lwjgl.opengl.GL15;
 
 public class GLHelper {
 
-    public static void checkGLError(String message) {
-        int i = GlStateManager.glGetError();
-        if (i != 0) {
-            Blackbox.LOGGER.error("###### Blackbox GL Error ######");
-            Blackbox.LOGGER.error("@ {}", message);
-            Blackbox.LOGGER.error("{}: {}", i, GLU.gluErrorString(i));
+    public static int genArrayBuffer(int startingSize, GLBufferUsage usage) {
+        return genArrayBuffer((long) startingSize, usage, true);
+    }
+
+    public static int genArrayBuffer(long startingSize, GLBufferUsage usage) {
+        int id = GL15.glGenBuffers();
+        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, id);
+        GL15.glBufferData(GL15.GL_ARRAY_BUFFER, startingSize, usage.id);
+        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
+        return id;
+    }
+
+    public static int genArrayBuffer(int startingSize, GLBufferUsage usage, boolean unbind) {
+        return genArrayBuffer((long) startingSize, usage, unbind);
+    }
+
+    public static int genArrayBuffer(long startingSize, GLBufferUsage usage, boolean unbind) {
+        int id = GL15.glGenBuffers();
+        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, id);
+        GL15.glBufferData(GL15.GL_ARRAY_BUFFER, startingSize, usage.id);
+        if (unbind) {
+            GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
         }
+        return id;
     }
 
     private GLHelper() { }
