@@ -50,8 +50,4 @@ public enum GLVersion {
 		this.supported = supported;
 	}
 
-	public boolean isVersionCompatible(GLVersion version) {
-		return version.ordinal() <= this.ordinal();
-	}
-
 }
