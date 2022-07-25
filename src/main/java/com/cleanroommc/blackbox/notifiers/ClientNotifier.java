@@ -17,7 +17,8 @@ public class ClientNotifier<T> {
     public static final ClientNotifier<IConfigChangedNotifier> CONFIG_CHANGED = new ClientNotifier<>(IConfigChangedNotifier.class, true);
     public static final ClientNotifier<IModelRelatedNotifier> MODEL_RELATED = new ClientNotifier<>(IModelRelatedNotifier.class, true);
     public static final ClientNotifier<IEntityStatusNotifier> ENTITY_STATUS = new ClientNotifier<>(IEntityStatusNotifier.class, false);
-    public static final ClientNotifier<ISetupTerrainNotifier> SETUP_TERRAIN = new ClientNotifier<>(ISetupTerrainNotifier.class, false);
+    public static final ClientNotifier<ILoadingNotifier> LOADING = new ClientNotifier<>(ILoadingNotifier.class, true);
+    public static final ClientNotifier<IRenderGlobalNotifier> RENDER_GLOBAL = new ClientNotifier<>(IRenderGlobalNotifier.class, false);
 
     public static void init() {
         distribute(BlackboxResourceLoader.INSTANCE);
