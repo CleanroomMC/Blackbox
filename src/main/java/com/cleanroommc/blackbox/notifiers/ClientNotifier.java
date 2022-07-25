@@ -24,6 +24,7 @@ public class ClientNotifier<T> {
         distribute(BlackboxResourceLoader.INSTANCE);
         distribute(DynamicLightingHandler.INSTANCE);
         distribute(HadEnoughSigns.INSTANCE);
+        distribute(RenderThreadWorkDispatcher.INSTANCE);
     }
 
     private static <T> void distribute(Object listener) {
