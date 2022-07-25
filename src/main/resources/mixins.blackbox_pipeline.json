@@ -9,6 +9,7 @@
     "BlockColorsMixin",
     "BlockModelShapesMixin",
     "BlockRendererDispatcherMixin",
+    "BufferBuilderAccessor",
     "EntityMixin",
     "EntityRendererAccessor",
     "EntityRendererMixin",
