@@ -2,6 +2,7 @@ package com.cleanroommc.blackbox.notifiers;
 
 import com.cleanroommc.blackbox.optimization.signs.HadEnoughSigns;
 import com.cleanroommc.blackbox.pipeline.lighting.DynamicLightingHandler;
+import com.cleanroommc.blackbox.pipeline.rendering.meshing.RenderThreadWorkDispatcher;
 import com.cleanroommc.blackbox.resource.BlackboxResourceLoader;
 import net.minecraftforge.common.MinecraftForge;
 

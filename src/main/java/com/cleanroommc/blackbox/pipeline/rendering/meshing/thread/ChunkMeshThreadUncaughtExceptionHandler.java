@@ -1,4 +1,4 @@
-package com.cleanroommc.blackbox.pipeline.meshing.thread;
+package com.cleanroommc.blackbox.pipeline.rendering.meshing.thread;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.crash.CrashReport;
