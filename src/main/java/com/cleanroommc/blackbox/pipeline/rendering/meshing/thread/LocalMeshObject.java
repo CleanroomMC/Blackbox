@@ -31,7 +31,11 @@ public class LocalMeshObject<T> {
 
     public void set(T object) {
         Thread thread = getThread();
-        return thread == null ? this.mainThreadLocal.set(object); : ((ChunkMeshThread) thread).setLocalValue(this, object);
+        if (thread == null) {
+            this.mainThreadLocal.set(object);
+        } else {
+            ((ChunkMeshThread) thread).setLocalValue(this, object);
+        }
     }
 
     private Thread getThread() {
