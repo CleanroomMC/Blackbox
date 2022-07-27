@@ -12,6 +12,9 @@ import net.minecraftforge.common.config.Config.SlidingOption;
 @LangKey("blackbox.mesh.chunk_meshing")
 public class ChunkMeshingConfig {
 
+    @LangKey("blackbox.mesh.chunk_meshing.thread_priority")
+    public static boolean alsoBuildOnMainThread = false;
+
     @RefreshScene
     @SlidingOption
     @RangeInt(min = 1, max = 10)
