@@ -1,0 +1,27 @@
+{
+  "package": "com.cleanroommc.blackbox.pipeline.core.mixins",
+  "refmap": "mixins.blackbox.refmap.json",
+  "target": "@env(DEFAULT)",
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+    "BakedQuadMixin",
+    "BlockColorsMixin",
+    "BlockModelShapesMixin",
+    "BlockRendererDispatcherMixin",
+    "BufferBuilderAccessor",
+    "EntityMixin",
+    "EntityRendererAccessor",
+    "EntityRendererMixin",
+    "ForgeBlockModelRendererAccessor",
+    "RenderChunkMixin",
+    "RenderGlobalMixin",
+    "TextureAtlasSpriteMixin",
+    "TextureMapMixin",
+    "ViewFrustumAccessor",
+    "WorldClientMixin"
+  ],
+  "mixins": [
+    "VertexLighterFlatMixin"
+  ]
+}

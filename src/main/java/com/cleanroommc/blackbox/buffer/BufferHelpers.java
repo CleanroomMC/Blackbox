@@ -2,7 +2,6 @@ package com.cleanroommc.blackbox.buffer;
 
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.shader.Framebuffer;
 
 public class BufferHelpers {
 
@@ -102,14 +101,6 @@ public class BufferHelpers {
 	 */
 	public static void renderCubeFace(double minX, double minY, double minZ, double maxX, double maxY, double maxZ, float r, float g, float b) {
 		renderCubeFace(minX, minY, minZ, maxX, maxY, maxZ, r, g, b, 1F);
-	}
-
-	public static boolean updateFramebufferSize(Framebuffer fbo, int width, int height) {
-		if (fbo.framebufferWidth != width || fbo.framebufferHeight != height) {
-			fbo.createBindFramebuffer(width, height);
-			return true;
-		}
-		return false;
 	}
 
 	private BufferHelpers() { }

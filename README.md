@@ -4,5 +4,8 @@
 
 ### Features:
 
-- Coming Soon
+- Dynamic Lighting
+- Dynamic Darkness
+- Dynamic Zooming
+- More coming soon!
 
