@@ -4,7 +4,7 @@ import com.cleanroommc.blackbox.config.category.lighting.DynamicLightingConfig;
 import com.cleanroommc.blackbox.pipeline.core.ILitEntity;
 import com.cleanroommc.blackbox.pipeline.core.IRenderGlobalExpansion;
 import com.cleanroommc.blackbox.notifiers.IEntityStatusNotifier;
-import com.cleanroommc.blackbox.notifiers.ISetupTerrainNotifier;
+import com.cleanroommc.blackbox.notifiers.IRenderGlobalNotifier;
 import com.google.common.base.Predicates;
 import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.client.Minecraft;
@@ -29,7 +29,7 @@ import java.util.*;
 import java.util.function.Predicate;
 import java.util.function.ToIntFunction;
 
-public enum DynamicLightingHandler implements IEntityStatusNotifier, ISetupTerrainNotifier {
+public enum DynamicLightingHandler implements IEntityStatusNotifier, IRenderGlobalNotifier {
 
     INSTANCE;
 
