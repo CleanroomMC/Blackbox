@@ -1,0 +1,68 @@
+blackbox.options.blackbox=Blackbox Options
+
+blackbox.options.category.details=Details
+
+blackbox.details.leaves=Leaves
+blackbox.details.leaves.tooltip=Leaves Module
+blackbox.details.leaves.leaves_mode=Leaves Rendering Mode (Override)
+blackbox.details.leaves.leaves_mode.tooltip=Select the rendering level of detail of most if not all leaves. This overrides natural and placed options below.
+blackbox.details.leaves.natural_leaves_mode=Natural Leaves Rendering Mode
+blackbox.details.leaves.natural_leaves_mode.tooltip=Select the rendering level of detail of most if not all natural leaves
+blackbox.details.leaves.placed_eaves_mode=Placed Leaves Rendering Mode
+blackbox.details.leaves.placed_eaves_mode.tooltip=Select the rendering level of detail of most if not all placed leaves
+
+blackbox.options.category.fixes=Fixes
+
+blackbox.fixes.falling_block=Falling Block
+blackbox.fixes.falling_block.tooltip=Falling Block Module
+blackbox.fixes.falling_block.fixmc114286=Fixes MC-114286
+blackbox.fixes.falling_block.fixmc114286.tooltip=Fixes falling blocks not being rendered if there exists the same block in the same block space.\n[https://bugs.mojang.com/browse/MC-114286]
+blackbox.fixes.falling_block.fix_tile_entity_rendering=Fixes Falling Tile Entity Rendering
+blackbox.fixes.falling_block.fix_tile_entity_rendering.tooltip=Fixes tile entities that use custom rendering turning invisible when they are falling blocks
+
+blackbox.options.category.lighting=Lighting
+
+blackbox.lighting.dynamic_darkness=Dynamic Darkness
+blackbox.lighting.dynamic_darkness.tooltip=Dynamic Darkness Module
+blackbox.lighting.dynamic_darkness.enabled=Enable Module
+blackbox.lighting.dynamic_darkness.enabled.tooltip=Enable Dynamic Darkness Module
+blackbox.lighting.dynamic_darkness.ignore_moon_phases=Ignore Moon Phases
+blackbox.lighting.dynamic_darkness.ignore_moon_phases.tooltip=Darkness will not factor in how bright the current moon phase is
+blackbox.lighting.dynamic_darkness.min_moon_brightness=Minimum Moon Brightness
+blackbox.lighting.dynamic_darkness.min_moon_brightness.tooltip=If Ignore Moon Phases is disabled, set the minimum brightness of moon phases to affect how dark it is
+blackbox.lighting.dynamic_darkness.max_moon_brightness=Maximum Moon Brightness
+blackbox.lighting.dynamic_darkness.max_moon_brightness.tooltip=If Ignore Moon Phases is disabled, set the maximum brightness of moon phases to affect how dark it is
+
+blackbox.lighting.dynamic_lighting=Dynamic Lighting
+blackbox.lighting.dynamic_lighting.tooltip=Dynamic Lighting Module
+blackbox.lighting.dynamic_lighting.enabled=Enable Module
+blackbox.lighting.dynamic_lighting.enabled.tooltip=Enable Dynamic Lighting Module
+blackbox.lighting.dynamic_lighting.update_frequency=Update Frequency
+blackbox.lighting.dynamic_lighting.update_frequency.tooltip=Change the update frequency in milliseconds for when the client should update light sources
+
+blackbox.options.category.misc=Miscellaneous
+
+blackbox.misc.tab_overlay=Tab Overlay
+blackbox.misc.tab_overlay.tooltip=Tab Overlay Module
+blackbox.misc.tab_overlay.show_numerical_ping=Show Numerical Ping
+blackbox.misc.tab_overlay.show_numerical_ping.tooltip=Shows ping as numbers (milliseconds) instead of bars
+
+blackbox.options.category.optimizations=Optimizations
+
+blackbox.optimizations.had_enough_signs=Had Enough Signs
+blackbox.optimizations.had_enough_signs.tooltip=Had Enough Signs Module
+blackbox.optimizations.had_enough_signs.enabled=Enable Module
+blackbox.optimizations.had_enough_signs.enabled.tooltip=Enable Had Enough Items Module
+
+blackbox.options.category.utilities=Utilities
+
+blackbox.utilities.dynamic_zoom=Dynamic Zoom
+blackbox.utilities.dynamic_zoom.tooltip=Dynamic Zoom Module
+blackbox.utilities.dynamic_zoom.save_zoom_level=Save Zoom Level
+blackbox.utilities.dynamic_zoom.save_zoom_level.tooltip=Saves current zoom multiplier instead of it resetting after every hotkey press
+blackbox.utilities.dynamic_zoom.default_zoom_level=Default Zoom Level
+blackbox.utilities.dynamic_zoom.default_zoom_level.tooltip=Set default zoom multiplier
+blackbox.utilities.dynamic_zoom.max_zoom_level=Max Zoom Level
+blackbox.utilities.dynamic_zoom.max_zoom_level.tooltip=Set max zoom multiplier
+blackbox.utilities.dynamic_zoom.zoom_stepping=Zoom Level Steps
+blackbox.utilities.dynamic_zoom.zoom_stepping.tooltip=Set zoom level scroll sensitivity

@@ -1,0 +1,11 @@
+{
+  "package": "com.cleanroommc.blackbox.optimization.core.mixins",
+  "refmap": "mixins.blackbox.refmap.json",
+  "target": "@env(DEFAULT)",
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+    "signs.BlockSignMixin",
+    "signs.TileEntitySignRendererMixin"
+  ]
+}
